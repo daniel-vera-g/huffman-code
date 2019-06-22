@@ -1,4 +1,5 @@
 // Huffman Coding in Golang
+// Source: http://www.golangprograms.com/data-structure-and-algorithms/golang-program-for-implementation-of-huffman-coding-algorithm.html
 package main
 
 import (
