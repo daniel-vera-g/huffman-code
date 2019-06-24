@@ -9,42 +9,67 @@ import (
 	"strings"
 )
 
+// Interface:
+// The basic HuffmanTree with the frequency
 type HuffmanTree interface {
 	Freq() int
 }
 
+// Struct:
+// HuffmanLeaf with frequency and value
 type HuffmanLeaf struct {
 	freq  int
 	value rune
 }
 
+// Struct:
+// HuffmanTree with the frequency and both sides of the HuffmanTree
 type HuffmanNode struct {
 	freq        int
 	left, right HuffmanTree
 }
 
+// Method:
+// Freq takes a HuffmanLeaf & returns the frequency of that leaf
 func (self HuffmanLeaf) Freq() int {
 	return self.freq
 }
 
+// Method:
+// Freq takes a HuffmanNode & returns the frequency of that node
 func (self HuffmanNode) Freq() int {
 	return self.freq
 }
 
+// Slice of HuffmanTre's
 type treeHeap []HuffmanTree
 
+// Method:
+// Len returns the len of a treeHeap
 func (th treeHeap) Len() int { return len(th) }
+
+// Method:
+// TODO
 func (th treeHeap) Less(i, j int) bool {
 	return th[i].Freq() < th[j].Freq()
 }
+
+// Method:
+// TODO
 func (th *treeHeap) Push(ele interface{}) {
 	*th = append(*th, ele.(HuffmanTree))
 }
+
+// Method:
+// TODO
 func (th *treeHeap) Pop() (popped interface{}) {
 	popped = (*th)[len(*th)-1]
 	*th = (*th)[:len(*th)-1]
 	return
 }
+
+// Method:
+// TODO
 func (th treeHeap) Swap(i, j int) { th[i], th[j] = th[j], th[i] }
 
 // The main function that builds a Huffman Tree and print codes by traversing
@@ -89,12 +114,7 @@ func printCodes(tree HuffmanTree, prefix []byte) {
 
 // Driver program to test above functions
 func main() {
-	// test := "Das ist ein test"
-	// test1 := os.Args[1:]
 	test := strings.Join(os.Args[1:], " ")
-	// fmt.Println(strings.Join(test1, " "))
-	// fmt.Println(test1)
-	// test := test1[0]
 
 	symFreqs := make(map[rune]int)
 	// read each symbol and record the frequencies
